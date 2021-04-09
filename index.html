@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="speak">
+        <button id="mikrafon">
+            <img src="icons8-microphone-96.png" alt="">
+        </button>
+        <p id="result">Hello</p>
+
+    </div>
+
+
+
+
+    <script>
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
+        const SpeechRecognitionEvent = window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
+        var recognition = new SpeechRecognition();
+        var speechRecognitionList = new SpeechGrammarList();
+        recognition.lang = 'uz-UZ';
+
+        document.getElementById('mikrafon').onclick = function () {
+            recognition.start();
+        }
+
+        recognition.onresult = function (event) {
+            var result = event.results[0][0].transcript;
+            console.log(result)
+            document.getElementById('result').innerHTML = result;
+        }
+    </script>
+</body>
+
+</html>
